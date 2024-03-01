@@ -133,11 +133,9 @@ require('lazy').setup({
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
+    -- See `:help ibl`
+    main = 'ibl',
+    opts = {},
   },
 
   -- "gc" to comment visual regions/lines
@@ -245,6 +243,10 @@ vim.keymap.set('n', '<leader>fe', ':Ex<Enter>')
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+vim.keymap.set('n', '<Up>', function () print 'k' end)
+vim.keymap.set('n', '<Down>', function () print 'j' end)
+vim.keymap.set('n', '<Left>', function () print 'h' end)
+vim.keymap.set('n', '<Right>', function () print 'l' end)
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -388,6 +390,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
+  vim.keymap.set({'n', 'i'}, '<C-h>', vim.lsp.buf.signature_help, { buffer = bufnr })
   vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = '[C]ode [A]ction' })
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
