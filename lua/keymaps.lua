@@ -19,6 +19,12 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
 
 vim.keymap.set('n','<leader>a', '"_ddO')
+vim.keymap.set('n', '<leader>d', '"_d', { desc = '[D]elete to void' })
+vim.keymap.set('n', '<leader>r\'', '"_di\'P', { desc = '[R]eplace inside single quotations' })
+vim.keymap.set('n', '<leader>r"', '"_di"P', { desc = '[R]eplace inside double quotations' })
+vim.keymap.set('n', '<leader>rb', '"_dibP', { desc = '[R]eplace inside parantheses' })
+vim.keymap.set('n', '<leader>rB', '"_diBP', { desc = '[R]eplace inside squiggly brackets' })
+vim.keymap.set('n', '<leader>r<C-b>', '"_di[P', { desc = '[R]eplace inside angle brackets' })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -37,6 +43,10 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<Up>', function () print 'k' end)
+vim.keymap.set('n', '<Down>', function () print 'j' end)
+vim.keymap.set('n', '<Left>', function () print 'h' end)
+vim.keymap.set('n', '<Right>', function () print 'l' end)
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
